@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "test1",
+    "password": "openstash",
+    "database": "ticketing",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "test1",
+    "password": "openstash",
+    "database": "ticketing",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "test1",
+    "password": "openstash",
+    "database": "ticketing",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
