@@ -19,7 +19,7 @@ module.exports = {
                 allowNull: false,
                 description: "Name"
             },
-            createUserId: {
+            createuserid: {
                 type: Sequelize.UUID,
                 description: "Create User ID"
             },
@@ -28,12 +28,12 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 description: "Authorized Days"
             },
-            createdAt: {
+            created: {
                 allowNull: false,
                 type: Sequelize.DATE,
-                description: "Created Date"
+                description: "Created Date",
             },
-            updatedAt: {
+            updated: {
                 allowNull: false,
                 type: Sequelize.DATE,
                 description: "Updated Date"

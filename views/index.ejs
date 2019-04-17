@@ -5,7 +5,98 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <script type="text/javascript" src="//pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="//pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
+
+  <center>Total Tickets 24 hour</center>
   </body>
 </html>
+<div id="chart">Total Tickets 24 hour</div>
+<script>
+  var pubnub = new PubNub({
+    publishKey: 'pub-c-21aef803-e073-458d-8d81-eebc0185c6b8',
+    subscribeKey: 'sub-c-4c0c0d12-6042-11e9-92bf-0e148eae7978'
+  });
+  eon.chart({
+    pubnub: pubnub,
+    channels: ['eon-bar'],
+    generate: {
+      bindto: '#chart',
+      data: {
+        labels: true,
+        type: 'bar'
+      },
+      bar: {
+        width: {
+          ratio: 0.5
+        }
+      },
+      tooltip: {
+        show: false
+      }
+    }
+  });
+</script>
+
+
+<!--
+<div id="chart">Total Tickets 24 hour</div>
+<script>
+  var pubnub = new PubNub({
+    publishKey: 'pub-c-21aef803-e073-458d-8d81-eebc0185c6b8',
+    subscribeKey: 'sub-c-4c0c0d12-6042-11e9-92bf-0e148eae7978'
+  });
+  eon.chart({
+    pubnub: pubnub,
+    channels: ['eon-gauge'],
+    rate: 1000,
+    generate: {
+      bindto: '#chart',
+      data: {
+        type: 'gauge',
+      },
+      gauge: {
+        min: 0,
+        max: 10000,
+        units: 'value'
+      },
+      color: {
+        pattern: ['#FF0000', '#F6C600', '#60B044']
+
+      }
+    }
+  });
+</script>
+
+-->
+<br><br><br>
+<Center>Average Ticket Time (Days)</Center>
+<div id="chart2"></div>
+
+
+<script>
+  var pubnub2 = new PubNub({
+    publishKey: 'pub-c-3cb2e739-3463-47c0-a7bd-65b41ff2a7e8',
+    subscribeKey: 'sub-c-58d9bc54-cc29-11e8-b5de-7a9ddb77e130'
+  });
+  eon.chart({
+    pubnub: pubnub2,
+    channels: ['eon-gauge2'],
+    rate: 1000,
+    generate: {
+      bindto: '#chart2',
+      data: {
+        type: 'gauge',
+      },
+      gauge: {
+        min: 0,
+        max: 100,
+        unit: 'value'
+      },
+      color: {
+        pattern: ['#FF0000', '#F6C600', '#60B044']
+      }
+    }
+  });
+</script>

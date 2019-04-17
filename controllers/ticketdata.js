@@ -1,10 +1,48 @@
 const ticketdata = require('../models').ticketdata;
+const sequelize = require('sequelize');
 
 
 module.exports = {
     list(req, res) {
         return ticketdata
             .findAll()
+            .then(ticketdata => res.status(200).send(ticketdata))
+            .catch((error) => {
+                console.log(error.toString());
+                res.status(400).send(error)
+            });
+    },
+//SELECT to_char(AVG (authdays), '99999999999999999D99') FROM ticketdata;
+
+// select count(*) from ticketdata where created > now() - interval '12 hour';
+
+    average(req, res) {
+        return ticketdata
+            .findAll({
+                attributes: ['createuserid', [sequelize.fn('AVG',
+                    sequelize.col('authdays')), 'authdays']],
+                group: ['createuserid'],
+                //order: [[sequelize.fn('AVG', sequelize.col('authdays')), 'DESC']]
+            })
+            .then(ticketdata => res.status(200).send(ticketdata))
+            .catch((error) => {
+                console.log(error.toString());
+                res.status(400).send(error)
+            });
+    },
+
+    total(req, res) {
+        return ticketdata
+            .findAll({
+                where: {
+                    [sequelize.Op.and]: [
+                        sequelize.literal(`created > NOW() - INTERVAL '12 hour'`),
+                    ],
+                },
+                attributes: ['createuserid', [sequelize.fn('COUNT', sequelize.col('id')), 'createuserid']],
+                group: ['createuserid']
+
+            })
             .then(ticketdata => res.status(200).send(ticketdata))
             .catch((error) => {
                 console.log(error.toString());
